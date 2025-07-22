@@ -13,6 +13,7 @@ pip install -e .
 # Fix protobuf compatibility
 pip install "protobuf==3.20.3"
 cd mesh/proto
+protoc --python_out=. --proto_path=. *.proto
 ./fix_import.sh
 cd ../..
 ```
