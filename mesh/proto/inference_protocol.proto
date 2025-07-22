@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+import "auth.proto";
+import "dht.proto";
+import "runtime.proto";
+
+message InferenceRequestAuth {
+  RequestAuthInfo auth = 1;
+  NodeInfo peer = 2;                   // (optional) sender's own node info, same behavior as in DHT.rpc_ping
+  bool validate = 3;                   // set to True if sender wants to validate that he is accessible and synchronized
+  string input = 4;
+  int32 max_new_tokens = 5;
+  Tensor tensor = 6;
+}
+
+message InferenceResponseAuth {
+  ResponseAuthInfo auth = 1;
+  NodeInfo peer = 2;                   // respondent's node id, for you to update routing table
+  double dht_time = 3;                 // recipient's local DHT time - used to soft-synchronize peers
+  string output = 4;
+  repeated Tensor tensors = 5;
+}

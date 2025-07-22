@@ -1,0 +1,11 @@
+{
+  "block": 151,
+  "epoch": 1,
+  "block_per_epoch": 100,
+  "seconds_per_epoch": 600,
+  "percent_complete": 0.51,
+  "blocks_elapsed": 51,
+  "blocks_remaining": 49,
+  "seconds_elapsed": 306,
+  "seconds_remaining": 294
+}

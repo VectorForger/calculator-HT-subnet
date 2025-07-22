@@ -1,0 +1,1 @@
+Add node role logic here ⸺ See example subnet for implementations

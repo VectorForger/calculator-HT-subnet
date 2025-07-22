@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+
+message ExpertUID {
+  string uid = 1;
+}
+
+message ExpertInfo {
+  bytes serialized_info = 1;
+}
+
+message Empty {
+
+}
+
+message NodeData {
+  bytes serialized_info = 1;
+}
+
+message ExpertRequest {
+  string uid = 1;
+  repeated Tensor tensors = 2;
+  bytes metadata = 3;
+}
+
+message ExpertResponse {
+  repeated Tensor tensors = 2;
+  bytes metadata = 3;
+}
+
+enum CompressionType{
+  NONE = 0;
+  MEANSTD_16BIT = 1;
+  FLOAT16 = 2;
+  QUANTILE_8BIT = 3;
+  UNIFORM_8BIT = 4;
+  BLOCKWISE_8BIT = 5;
+}
+
+message Tensor {
+  bytes buffer = 1;
+  repeated uint32 size = 2;
+  bool requires_grad = 3;
+  string dtype = 4;
+  CompressionType compression = 5;
+  int32 chunks = 6;
+}
+
+message InferenceRequest {
+  string input = 1;
+  int32 max_new_tokens = 2;
+  repeated Tensor tensors = 3;
+}
+
+message InferenceRequestTest {
+  string input = 1;
+  int32 max_new_tokens = 2;
+  Tensor tensor = 3;
+}
+
+message InferenceResponse {
+  string output = 1;
+  repeated Tensor tensors = 2;
+}
+
+
+message InferenceRequestTestV3 {
+  string input = 1;
+  int32 max_new_tokens = 2;
+  Tensor tensor = 3;
+  repeated Tensor past_key_values = 4;
+}
+
+message InferenceResponseTestV3 {
+  string output = 1;
+  repeated Tensor tensors = 2;
+  repeated Tensor past_key_values = 3;
+}

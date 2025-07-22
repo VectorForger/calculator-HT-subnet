@@ -1,0 +1,13 @@
+pytest==8.3.5
+pytest-forked
+pytest-asyncio==0.26.0
+pytest-cov
+pytest-timeout
+coverage
+tqdm
+scikit-learn
+codespell==2.2.2
+psutil
+pytest-xdist
+ruff==0.11.2
+PyHamcrest>=2.1.0
