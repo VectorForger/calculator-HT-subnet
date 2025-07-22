@@ -11,6 +11,8 @@ from mesh.dht.validation import RecordValidatorBase
 from mesh.subnet.consensus.consensus import Consensus
 from mesh.subnet.data_structures import ServerClass, ServerInfo, ServerState
 from mesh.subnet.protocols.mock_protocol import MockProtocol
+from mesh.subnet.protocols.calculator_protocol import SimpleCalculatorProtocol
+
 from mesh.subnet.reachability import ReachabilityProtocol, check_direct_reachability
 from mesh.subnet.utils.dht import declare_node, get_node_infos
 from mesh.subnet.utils.key import get_rsa_private_key
@@ -106,10 +108,17 @@ class Server:
 
         self.protocol = MockProtocol(dht=self.dht)
         """
-        self.mock_protocol = MockProtocol(
+        # self.mock_protocol = MockProtocol(
+        #     dht=self.dht,
+        #     subnet_id=self.subnet_id,
+        #     hypertensor=self.hypertensor,
+        #     authorizer=None,
+        #     start=True
+        # )
+
+        self.mock_protocol = SimpleCalculatorProtocol(
             dht=self.dht,
             subnet_id=self.subnet_id,
-            hypertensor=self.hypertensor,
             authorizer=None,
             start=True
         )

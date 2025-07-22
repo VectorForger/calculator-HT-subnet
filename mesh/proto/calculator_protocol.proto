@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+import "auth.proto";
+import "dht.proto";
+
+// Simple calculator request
+message CalculationRequest {
+  RequestAuthInfo auth = 1;
+  NodeInfo peer = 2;
+  string expression = 3;        // "4 * 3"
+  string request_id = 4;        // For tracking (optional)
+}
+
+// Simple calculator response
+message CalculationResponse {
+  ResponseAuthInfo auth = 1;
+  NodeInfo peer = 2;
+  double dht_time = 3;
+  string expression = 4;        // Echo back "4 * 3"
+  double result = 5;            // 12.0
+  bool success = 6;             // true/false
+  string error = 7;             // Error message if success=false
+  string request_id = 8;        // Match the request
+}
